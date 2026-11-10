@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visualizador de Conversas WhatsApp</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section id="drop">
+  <div class="card">
+    <h1>Visualizador de conversas</h1>
+    <p>Carregue um backup <b>.sqlite / .db</b> do WhatsApp (iOS) ou uma exportação <b>.txt</b> e navegue pela conversa em formato de chat.</p>
+    <label class="btn big">Escolher arquivo<input id="file" type="file" accept=".sqlite,.db,.sqlite3,.txt" hidden></label>
+    <p class="hint">ou arraste o arquivo para esta janela · tudo é processado localmente no navegador</p>
+    <p id="status" role="status"></p>
+  </div>
+</section>
+
+<main id="app" hidden>
+  <aside id="side">
+    <header><h2>Conversas</h2><button id="reload" class="icon" title="Carregar outro arquivo">⤒</button></header>
+    <input id="chatFilter" type="search" placeholder="Filtrar conversas…" aria-label="Filtrar conversas">
+    <ul id="chatList"></ul>
+  </aside>
+  <section id="chat">
+    <header class="top">
+      <div class="titles"><h2 id="chatTitle"></h2><small id="chatSub"></small></div>
+      <label id="meWrap" hidden>Eu sou <select id="meSel"></select></label>
+    </header>
+    <div class="searchbar">
+      <input id="search" type="search" placeholder="Buscar palavras-chave nas mensagens…" aria-label="Buscar mensagens" autocomplete="off">
+      <button id="prev" class="icon" title="Anterior (Shift+Enter)" hidden>↑</button>
+      <button id="next" class="icon" title="Próxima (Enter)" hidden>↓</button>
+      <button id="clear" class="icon" title="Limpar busca">✕</button>
+      <span id="hits"></span>
+    </div>
+    <div id="messages" aria-live="polite"></div>
+    <p id="status2"></p>
+  </section>
+</main>
+<script src="vendor/sql-asm.js"></script>
+<script src="js/util.js"></script>
+<script src="js/whatsapp-txt.js"></script>
+<script src="js/sqlite-reader.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
